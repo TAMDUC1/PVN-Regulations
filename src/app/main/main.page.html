@@ -1,0 +1,89 @@
+<ion-header no-border>
+  <ion-toolbar color="pvn">
+    <div class="content_header">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <img style="vertical-align: baseline" src="http://222.255.252.41/content/uploads/logo.jpg" alt="">
+      <div class="text">
+        <div class="big_text">TẬP ĐOÀN DẦU KHÍ QUỐC GIA VIỆT NAM </div>
+        <div class="small_text">Bộ quy chế quản trị nội bộ</div>
+      </div>
+    </div>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content [fullscreen]="true" style="width: 100%">
+  <ion-row style="border-color: transparent!important;">
+    <ion-col class="search" size="12">
+      <ion-item lines="none">
+        <ion-icon name="search" (click)="seach_text()" slot="end"></ion-icon>
+        <ion-input [(ngModel)]="key_search" placeholder="Tìm kiếm "></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+   <!-- <ion-grid>
+      <ion-row>
+        <ion-col class="search" size="12" size-lg>
+          <ion-item lines="none">
+            <ion-icon name="mic" slot="end"></ion-icon>
+            <ion-input type="email" placeholder="Tìm kiếm bằng giọng nói"></ion-input>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-icon name="search" (click)="seach_text()" slot="end"></ion-icon>
+            <ion-input [(ngModel)]="key_search" placeholder="Tìm kiếm "></ion-input>
+          </ion-item>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>-->
+<!--  <ion-item lines="none" *ngFor="let d of sideMenu; let i = index"  (click)="openItemDetail(d.URL,d.ObjectID)">
+
+      <ion-icon [name]="d.ImageURL" slot="start"></ion-icon>
+    <ion-text style="color: blue ; font-weight: bold; padding: 5px">
+      {{ d.Title }}
+    </ion-text>
+  </ion-item>-->
+  <div  style="border: solid thin!important; margin: 10px ; padding: 5px; border-radius: 10px; border-color: #d2ceff!important;">
+    <ion-text style="color: #6056ff ; padding: 10px">
+      Thông báo văn bản mới
+    </ion-text>
+
+    <ion-item lines="none"  *ngFor="let d of list" (click)="viewData(d.Id)" >
+      <ion-grid >
+        <ion-row style="padding: 3px; border-top: none;border-left:none;border-right: none;border-radius: 0px ;border-color: #d2ceff!important; " >
+          <ion-col size="12" class="ion-text-start">
+            <ion-text style="font-size: medium">
+              {{d.TieuDe}}
+            </ion-text>
+          </ion-col>
+          <ion-col size="12" class="ion-text-end">
+            <ion-text style="font-size: x-small">
+              Số Ký Hiệu : <span style="color: red">
+            {{d.MaTaiLieu}}
+          </span>
+            </ion-text>
+            <ion-text style="font-size: x-small">
+              | Ngày ban hành: <span style="color: #4c5fff">
+            {{d.NgayBanHanh | date: "dd/MM/yyyy"}}
+          </span>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+
+  </div>
+
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-title slot="start" style="color: blue">
+      © Quy Chế PVN
+    </ion-title>
+
+  </ion-toolbar>
+</ion-footer>

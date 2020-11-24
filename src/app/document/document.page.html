@@ -1,0 +1,163 @@
+<ion-header no-border>
+  <ion-toolbar color="pvn" >
+    <div  class="content_header">
+<!--
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+&lt;!&ndash;
+        <ion-button size="small" style="color: #a9b1ba">< Quay Lại</ion-button>
+&ndash;&gt;
+
+      </ion-buttons>
+-->
+      <ion-buttons slot="start">
+
+        <ion-button size="large" (click)="gotoBack()"> <ion-icon name="arrow-back" style="color: white"></ion-icon> </ion-button>
+      </ion-buttons>
+      <img style="vertical-align: baseline" src="http://222.255.252.41/content/uploads/logo.jpg" alt="">
+      <div class="text" >
+        <div class="big_text">TẬP ĐOÀN DẦU KHÍ QUỐC GIA VIỆT NAM </div>
+        <div class="small_text">Bộ quy chế quản trị nội bộ</div>
+      </div>
+      <!--<img slot="end" style="vertical-align: baseline" src="http://222.255.252.41/content/uploads/logo.jpg" alt="">
+      <div class="text" >
+        <div class="big_text">TẬP ĐOÀN DẦU KHÍ QUỐC GIA VIỆT NAM </div>
+        <div class="small_text">Bộ quy chế quản trị nội bộ</div>
+      </div>-->
+    </div>
+
+  </ion-toolbar>
+
+</ion-header>
+<ion-content fullscreen>
+
+  <!-- Label only -->
+  <ion-segment scrollable style="color: #1614ba; background-color: white" [(ngModel)]="type" value="info" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="info" layout="icon-end">
+      <ion-label>Thuộc Tính</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="content" checked layout="icon-end">
+      <ion-label>Nội Dung</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="map" layout="icon-end">
+      <ion-label>Lược Đồ</ion-label>
+    </ion-segment-button>
+
+  </ion-segment>
+  <div [ngSwitch]="type">
+    <div *ngSwitchCase="'content'">
+
+      <div style="padding: 5px 10px;" [innerHTML]="data.NoiDung"></div>
+    </div>
+    <div *ngSwitchCase="'info'">
+      <div style="padding: 5px 10px;">
+        <ion-text>
+          {{data.TieuDe}}
+        </ion-text>
+      </div>
+      <ion-grid>
+        <ion-row style="border-color: transparent!important;">
+          <ion-col size="5" class="cellleft-class">
+            Số Ký Hiệu
+          </ion-col>
+          <ion-col size="7"class="cell-class">
+            {{data.MaTaiLieu}}
+          </ion-col>
+          <ion-col size="5" class="cellleft-class">
+            Ngày Ban Hành
+          </ion-col>
+          <ion-col size="7"class="cell-class">
+            <ion-text displayFormat="DD-MM-YYYY"> {{data.NgayBanHanh | date:'dd-MM-yyyy'}}</ion-text>
+          </ion-col>
+          <ion-col size="5" class="cellleft-class">
+            Trích Yếu
+          </ion-col>
+          <ion-col size="7"class="cell-class">
+            {{data.GhiChu}}
+          </ion-col>
+          <ion-col size="5" class="cellleft-class">
+             Trạng Thái
+          </ion-col>
+          
+          <ion-col size="7"class="cell-class">
+            {{data.TrangThai}}
+          </ion-col>
+          <ion-col size="5" class="cellleft-class">
+            Nội Dung
+          </ion-col>
+
+          <ion-col size="7"class="cell-class">
+            <ion-list ng-if="data.FileNoiDung.length > 0" style="border-color: transparent!important;padding-left:0px ">
+              <ion-item slot="start" lines="none" *ngFor= "let file of data.FileNoiDung" style="border-color: transparent!important; padding-left:0px ">
+                <ion-item  lines ="none" (click)="viewDoc(file.Url,file.Name)" style="color: blue ;border-color: transparent!important;padding-left:0px ">
+                  <ion-icon name="document-text-outline" size="large" color="#323fff"></ion-icon>
+                  Xem File
+                </ion-item>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+     <!-- <ion-list ng-if="data.FileNoiDung.length > 0">
+        <ion-item lines="none" *ngFor= "let file of data.FileNoiDung">
+            <ion-item  lines ="none" (click)="viewDoc(file.Url,file.Name)" style="color: blue">
+              <ion-icon name="document-text-outline" size="large" color="#323fff"></ion-icon>
+              Xem File
+            </ion-item>
+        </ion-item>
+      </ion-list>-->
+    </div>
+    <div *ngSwitchCase="'map'">
+     <!-- <ion-item lines="none" ng-if="data.VanBanLienQuan.length < 0">
+        <ion-text style="color: red">
+          Tài liệu đang được cập nhật
+        </ion-text>
+      </ion-item>-->
+      <ion-list ng-if="data.VanBanLienQuan.length > 0">
+        <div  *ngFor= "let file of data.VanBanLienQuan">
+          <div style="width: 100% !important; padding: 10px 10px">
+            <ion-text style="color: blue">
+              {{file.VanBanLienQuan}}
+            </ion-text>
+          </div>
+          <ion-item lines="none" style="border: solid thin ; margin: 10px; border-radius: 10px ;border-color: #d2ceff!important; margin-left : 10px!important;">
+            <ion-grid>
+
+              <div [hidden]="file.LstVanBan.length > 0" style="color: red">
+                  Đang cập nhật
+              </div>
+              <ion-row style=" border-top: none;border-left:none;border-right: none;border-radius: 0px ;border-color: #d2ceff!important;margin: 0px!important; " *ngFor= "let doc of file.LstVanBan">
+                <ion-col size="12" class="ion-text-start" (click)="gotoDoc(doc.IdTaiLieu)">
+                  <ion-text style="font-size: small ;color:blue" >
+                    {{doc.MaTaiLieu}}
+                  </ion-text> |
+                  <ion-text style="font-size: small">
+                   Ngày Ban Hành : <span style="color: red">
+                    {{doc.NgayBanHanh}}
+                  </span>
+                  </ion-text>
+
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+
+        </div>
+
+      </ion-list>
+    </div>
+  </div>
+<!--
+  <pdf-viewer  [src]="src"  [fit-to-page]="true" original-size="false" [show-all]="true" [show-borders]="true" [zoom]="pdfZoom" (after-load-complete)="callBackFn($event)"></pdf-viewer>
+-->
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-title slot="start" style="color: blue">
+      © Quy Chế PVN
+    </ion-title>
+
+  </ion-toolbar>
+</ion-footer>
