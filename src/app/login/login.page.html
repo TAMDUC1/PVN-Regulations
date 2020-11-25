@@ -16,13 +16,12 @@
       <ion-col class="search ion-text-center" size="12" size-lg  >
 
         <div class="text" style="color: #00a6ec ; font-weight: bolder">
-          <div class="big_text">Bộ Quy Chế Quản Trị Nội Bộ </div>
+          <div class="big_text">Quy Chế PVN</div>
         </div>
 
       </ion-col>
     </ion-row>
     <br>
-<!--
     <form [formGroup]="credentialsForm" (ngSubmit)="onSubmit()">
       <ion-row>
         <ion-col class="search ion-text-center" size="12" size-lg  >
@@ -32,25 +31,23 @@
             </h2>
           </ion-text>
         </ion-col>
-        <ion-col class="" size="10" offset="1" size-lg  >
+        <!--<ion-col class="" size="10" offset="1" size-lg  >
           <ion-text>
             Bạn vui lòng đăng nhập
           </ion-text>
-          <ion-text>
-            Hoặc Đăng ký nếu bạn chưa có tài khoản
-          </ion-text>
-
-        </ion-col>
+        </ion-col>-->
         <div class="login-form">
           <ion-list lines="none" class="ion-margin-top">
             <ion-item>
               <ion-icon slot="start" color="lightgrey" name="ios-mail-outline"></ion-icon>
-              <ion-input class="inputField" type="email" placeholder="Tên đăng nhập" ></ion-input>
+                <ion-input formControlName="Username" type="email" placeholder="Tài khoản" ></ion-input>
+
             </ion-item>
 
             <ion-item>
               <ion-icon slot="start" color="lightgrey" name="ios-key-outline"></ion-icon>
-              <ion-input class="inputField" type="password" placeholder="Mật khẩu" ></ion-input>
+                <ion-input formControlName="PasswordMobile" type="password" placeholder="Mật Khẩu" ></ion-input>
+
             </ion-item>
 
           </ion-list>
@@ -60,7 +57,6 @@
         </div>
       </ion-row>
     </form>
--->
 
   </ion-grid>
 </ion-content>

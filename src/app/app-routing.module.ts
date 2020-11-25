@@ -14,17 +14,23 @@ const routes: Routes = [
   },
     { path: 'main',
         loadChildren: './main/main.module#MainPageModule',
-       // canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService]
     },
-    { path: 'side-menu', loadChildren: './side-menu/side-menu.module#SideMenuPageModule' },
+    { path: 'side-menu', loadChildren: './side-menu/side-menu.module#SideMenuPageModule' ,
+        canActivate: [AuthGuardService]
+    },
 
   {
     path: 'second',
-    loadChildren: () => import('./second/second.module').then( m => m.SecondPageModule)
+    loadChildren: () => import('./second/second.module').then( m => m.SecondPageModule),
+      canActivate: [AuthGuardService]
+
   },
   {
     path: 'third',
-    loadChildren: () => import('./third/third.module').then( m => m.ThirdPageModule)
+    loadChildren: () => import('./third/third.module').then( m => m.ThirdPageModule),
+      canActivate: [AuthGuardService]
+
   },
   {
     path: 'login',
@@ -36,7 +42,9 @@ const routes: Routes = [
           categoryData: CategoryDataResolverService,
           menuTitle: MenuTitleResolverService
       },
-    loadChildren: () => import('./category/category.module').then( m => m.CategoryPageModule)
+    loadChildren: () => import('./category/category.module').then( m => m.CategoryPageModule),
+      canActivate: [AuthGuardService]
+
   },
   {
     path: 'list/:id',
@@ -44,14 +52,18 @@ const routes: Routes = [
           listData: ListDataResolverService,
           listTitle : ListTitleResolverService
       },
-    loadChildren: () => import('./list/list.module').then( m => m.ListPageModule)
+    loadChildren: () => import('./list/list.module').then( m => m.ListPageModule),
+      canActivate: [AuthGuardService]
+
   },
   {
     path: 'document/:id',
       resolve: {
           documentData: DocumentDataResolverService
       },
-    loadChildren: () => import('./document/document.module').then( m => m.DocumentPageModule)
+    loadChildren: () => import('./document/document.module').then( m => m.DocumentPageModule),
+      canActivate: [AuthGuardService]
+
   },
 ];
 

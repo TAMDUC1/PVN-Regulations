@@ -18,7 +18,7 @@ export class AuthGuardService implements CanActivate {
         return new Promise(
             resolve =>
             {
-               /* if (this.auth.isAuthenticated()) {
+                if (this.auth.isAuthenticated()) {
                     console.log("##### User Guard: auth = true");
                     resolve(true);
                 }
@@ -26,7 +26,7 @@ export class AuthGuardService implements CanActivate {
                     console.log("##### User Guard: auth = false");
                     console.log('User is not logged in');
                     //this.router.navigate(['/login']);
-                    this.router.navigate(['/side-menu/login-jwt'], {
+                    this.router.navigate(['/login'], {
                         queryParams: {
                             redirectUrl: state.url
                         }
@@ -36,7 +36,6 @@ export class AuthGuardService implements CanActivate {
 
                     resolve(false);
                 }
-*/
                 resolve(false);
             });
     }

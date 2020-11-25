@@ -49,6 +49,9 @@
     <div *ngSwitchCase="'content'">
 
       <div style="padding: 5px 10px;" [innerHTML]="data.NoiDung"></div>
+      <div [hidden]="data.NoiDung" style="color: red; text-align: center">
+        Đang cập nhật
+      </div>
     </div>
     <div *ngSwitchCase="'info'">
       <div style="padding: 5px 10px;">
@@ -59,22 +62,47 @@
       <ion-grid>
         <ion-row style="border-color: transparent!important;">
           <ion-col size="5" class="cellleft-class">
-            Số Ký Hiệu
+            Số/Ký hiệu
           </ion-col>
           <ion-col size="7"class="cell-class">
             {{data.MaTaiLieu}}
           </ion-col>
           <ion-col size="5" class="cellleft-class">
-            Ngày Ban Hành
+            Số/Ký hiệu
           </ion-col>
           <ion-col size="7"class="cell-class">
             <ion-text displayFormat="DD-MM-YYYY"> {{data.NgayBanHanh | date:'dd-MM-yyyy'}}</ion-text>
           </ion-col>
           <ion-col size="5" class="cellleft-class">
-            Trích Yếu
+            Trích yếu
           </ion-col>
           <ion-col size="7"class="cell-class">
             {{data.GhiChu}}
+          </ion-col>
+          <ion-col size="5" class="cellleft-class">
+            Ban soạn thảo
+          </ion-col>
+          <ion-col size="7"class="cell-class">
+            {{data.LinhVuc}}
+            <div [hidden]="data.LinhVuc" style="color: red">
+              Đang cập nhật
+            </div>
+          </ion-col>
+          <ion-col size="5" class="cellleft-class">
+            Cơ quan ban hành
+          </ion-col>
+          <ion-col size="7"class="cell-class">
+            {{data.CapCoQuan}}
+            <div [hidden]="data.CapCoQuan" style="color: red">
+              Đang cập nhật
+            </div>
+          </ion-col>
+          <ion-col size="5" class="cellleft-class">
+            Phân loại
+          </ion-col>
+
+          <ion-col size="7"class="cell-class">
+            {{data.LoaiHoSo}}
           </ion-col>
           <ion-col size="5" class="cellleft-class">
              Trạng Thái

@@ -27,11 +27,18 @@
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
-
         </ion-list>
         <ion-item-divider>
 
         </ion-item-divider>
+        <ion-menu-toggle>
+          <ion-item lines="none" (click)="login()">
+            <ion-icon name="log-out" slot="start"></ion-icon>
+            <ion-label text-wrap style="color: red;">
+              Đăng xuất
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
         <!--<ion-item>
           <ion-icon name="people" slot="start"></ion-icon>
           <ion-label>PVN</ion-label>

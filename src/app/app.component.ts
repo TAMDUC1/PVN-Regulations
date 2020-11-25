@@ -127,6 +127,10 @@ export class AppComponent implements OnInit {
     this.router.navigate(['main']);
 
   }
+  login() {
+        this.router.navigate(['login']);
+
+    }
   ngOnInit() {
     /*const path = window.location.pathname.split('folder/')[1];
     if (path !== undefined) {

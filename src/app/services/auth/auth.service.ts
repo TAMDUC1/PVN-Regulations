@@ -1,3 +1,4 @@
+// @ts-ignore
 import { Platform, AlertController } from '@ionic/angular';
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
@@ -6,6 +7,7 @@ import {Storage} from '@ionic/storage';
 import { tap, catchError } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
+import {environment} from '../../../environments/environment';
 const headerDict = {
     'Content-Type': 'application/json'
 };
@@ -19,6 +21,7 @@ const TOKEN_KEY = 'access_token';
 })
 export class AuthService {
     redirectUrl: string;
+    authurl = environment.authUrl;
     url = '';
     user = null;
     authData = null;
@@ -35,11 +38,11 @@ export class AuthService {
               private alertController: AlertController
   )
   {
-    /*  this.plt.ready().then(() => {
+      this.plt.ready().then(() => {
           this.checkToken();
-      });*/
+      });
   }
-   /* checkToken() {
+    checkToken() {
         this.storage.get(TOKEN_KEY).then(token => {
             if (token)
             {
@@ -84,17 +87,17 @@ export class AuthService {
 
                     console.log('decode',obj);
                     this.authenticationState.next(true);
-                  /!*  this.redirectUrl = this.activatedRoute.snapshot.queryParamMap.get('redirectUrl');
+                    this.redirectUrl = this.activatedRoute.snapshot.queryParamMap.get('redirectUrl');
                     if(this.redirectUrl){
                         this.router.navigateByUrl(this.redirectUrl);
                     }else{
-                        this.router.navigateByUrl('/side-menu/audit');
+                        this.router.navigateByUrl('/main');
                     }
-*!/
                 }),
                 catchError(e => {
                     console.log(e);
-                   // this.showAlert(e.error.msg);
+
+                    this.showAlert(e.statusText);
                     throw new Error(e);
                 })
             );
@@ -119,11 +122,11 @@ export class AuthService {
     }
     isAuthenticated() {
         return this.authenticationState.value;
-    }*/
-    /*showAlert(msg) {
+    }
+    showAlert(msg) {
         const alert = this.alertController.create({
-            message: msg,
-            header: 'Error',
+           // message: msg,
+            header: 'Đăng nhập tài khoản hoặật khẩu bị sai',
             buttons: ['OK']
         });
         alert.then(alert => alert.present());
@@ -133,5 +136,5 @@ export class AuthService {
             message: msg,
         });
         alert.then(alert => alert.present());
-    }*/
+    }
 }

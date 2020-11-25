@@ -18,13 +18,13 @@ export class LoginPage implements OnInit {
       private authService: AuthService
   ) { }
 
-  ngOnInit() {
-      this.credentialsForm = this.formBuilder.group({
-          Username: ['', [Validators.required, Validators.email]],
-          PasswordMobile: ['', [Validators.required, Validators.minLength(6)]]
-      });
-  }
-    /*onSubmit() {
+    ngOnInit() {
+        this.credentialsForm = this.formBuilder.group({
+            Username: ['', [Validators.required, Validators.email]],
+            PasswordMobile: ['', [Validators.required, Validators.minLength(6)]]
+        });
+    }
+    onSubmit() {
         console.log('this.credentialsForm.value',this.credentialsForm.value);
         this.authService.login(this.credentialsForm.value).subscribe();
     }
@@ -40,6 +40,6 @@ export class LoginPage implements OnInit {
     }
     logOut(){
         this.authService.logout();
-    }*/
+    }
 
 }
