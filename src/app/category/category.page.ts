@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, NavigationExtras, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import { ListDataService} from '../services/data/list-data.service';
-// @ts-ignore
 import {environment} from '../../environments/environment';
 import {LoadingController, ToastController} from '@ionic/angular';
 import { NavController } from '@ionic/angular';
@@ -15,9 +14,9 @@ import {SidemenuService} from '../services/api/sidemenu.service';
   styleUrls: ['./category.page.scss'],
 })
 export class CategoryPage implements OnInit {
-  ParentID;
-  data : any;
-  url = environment.urllist;
+    ParentID;
+    data : any;
+    url = environment.urllist;
     loading;
     url_search = environment.url_search;
     key_search:string = "";
@@ -35,7 +34,7 @@ export class CategoryPage implements OnInit {
 
     ) {
       this.route.queryParams.subscribe(params => {
-        console.log(this.router.getCurrentNavigation())
+        console.log('data category abc',this.router.getCurrentNavigation());
           if (this.router.getCurrentNavigation().extras.state) {
               this.data = this.router.getCurrentNavigation().extras.state.category;
               console.log('data category 1', this.data);
@@ -55,11 +54,8 @@ export class CategoryPage implements OnInit {
         this.router.navigate(['main']);
     }
     viewList (id,title,hasChild){
-      // thay IdNhom
-        //urllistdungtam : 'http://222.255.250.162:8080/api/TaiLieu/getTaiLieu?IdNhom=6152&Page=1&RowPage=10&P_Search='
         var tempId = id.toString();
         if(hasChild){
-            console.log('child',hasChild);
             let urlTemp = environment.url + id;
             this.http.get(urlTemp).subscribe((response) => {
                 this.categoryData.setData(id,response);

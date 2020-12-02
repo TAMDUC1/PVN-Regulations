@@ -26,41 +26,6 @@ export class AppComponent implements OnInit {
   public selectedIndex = 0;
   sideMenu: any = [];
   url = environment.url;
-  public appPages = [
-    {
-      title: 'Quy chế quản lý 1',
-      url: 'main',
-      icon: 'mail',
-      id: 'Quy chế quản lý 1'
-    },
-    {
-      title: 'Quy chế quản lý 2',
-      url: 'main',
-      icon: 'mail',
-      id: 'Quy chế quản lý 2'
-    },
-    {
-      title: 'Quy chế quản lý 3',
-      url: 'main',
-      icon: 'mail',
-      id: 'Quy chế quản lý 3'
-    },
-    {
-      title: 'Quy chế quản trị',
-      url: 'second',
-      icon: 'book'
-    },
-    {
-      title: 'Văn bản pháp quy',
-      url: 'third',
-      icon: 'albums'
-    },
-    {
-      title: 'Đăng nhập',
-      url: 'login',
-      icon: 'albums'
-    }
-  ];
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -68,7 +33,6 @@ export class AppComponent implements OnInit {
     private router: Router,
     private sideMenuService: SidemenuService,
     private categoryData : CategoryDataService,
-
     private http: HttpClient,
     private route: ActivatedRoute,
     private listData : ListDataService,
@@ -84,12 +48,10 @@ export class AppComponent implements OnInit {
   }
 
   openItemDetail(url, ObjectID,menuTitle) {
-
     var temp = url.toLowerCase();
     if (temp === 'detail') {
       temp = 'document';
     }
-
     // call api get category de truyen vao page temp
     if (temp === 'document') {// document quan tri cong ty me
       this.http.get(environment.urldocumentmother).subscribe((response) => {
@@ -114,9 +76,6 @@ export class AppComponent implements OnInit {
     }
 
 
-  }
-  test() {
-    this.sideMenu = this.sideMenuService.getMenu();
   }
   initializeApp() {
     this.platform.ready().then(() => {

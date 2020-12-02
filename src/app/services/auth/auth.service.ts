@@ -81,17 +81,14 @@ export class AuthService {
                         email : this.authData.email,
                         roles : temp.roles
                     };
-
                     // save authData to service
-
-
                     console.log('decode',obj);
                     this.authenticationState.next(true);
                     this.redirectUrl = this.activatedRoute.snapshot.queryParamMap.get('redirectUrl');
                     if(this.redirectUrl){
                         this.router.navigateByUrl(this.redirectUrl);
                     }else{
-                        this.router.navigateByUrl('/main');
+                        this.router.navigate(['main']);
                     }
                 }),
                 catchError(e => {
