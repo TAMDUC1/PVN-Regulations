@@ -25,15 +25,11 @@ export class AuthGuardService implements CanActivate {
                 else {
                     console.log("##### User Guard: auth = false");
                     console.log('User is not logged in');
-                    //this.router.navigate(['/login']);
                     this.router.navigate(['/login'], {
                         queryParams: {
                             redirectUrl: state.url
                         }
                     });
-                    // route with redirect http://gnomeontherun.com/2017/03/02/guards-and-login-redirects-in-angular/
-                    //this.router.navigate(['/product-list'], { queryParams: { redirect: 3 }});
-
                     resolve(false);
                 }
                 resolve(false);

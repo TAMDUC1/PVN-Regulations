@@ -10,17 +10,6 @@
         <div class="big_text">TẬP ĐOÀN DẦU KHÍ QUỐC GIA VIỆT NAM </div>
         <div class="small_text">Bộ quy chế quản trị nội bộ</div>
       </div>
-      <!--<div class="text" >
-        <div class="big_text">{{title}} </div>
-      </div>-->
-     <!-- <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <img style="vertical-align: baseline" src="http://222.255.252.41/content/uploads/logo.jpg" alt="">
-      <div class="text" >
-        <div class="big_text">TẬP ĐOÀN DẦU KHÍ QUỐC GIA VIỆT NAM </div>
-        <div class="small_text">Bộ quy chế quản trị nội bộ</div>
-      </div>-->
     </div>
   </ion-toolbar>
 </ion-header>
@@ -63,8 +52,13 @@
         </ion-row>
       </ion-grid>
     </ion-item>
-
   </div>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+            loadingSpinner="lines-small"
+            loadingText="Tải dữ liệu...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
 <ion-footer>
   <ion-toolbar>

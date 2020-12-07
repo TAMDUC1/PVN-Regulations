@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 // @ts-ignore
@@ -6,6 +6,7 @@ import { environment } from '../../environments/environment';
 import { LoadingController, ToastController } from '@ionic/angular';
 import { DocumentDataService} from '../services/data/document-data.service';
 import { NavController } from '@ionic/angular';
+import { IonInfiniteScroll } from '@ionic/angular';
 
 @Component({
     selector: 'app-list',
@@ -13,12 +14,17 @@ import { NavController } from '@ionic/angular';
     styleUrls: ['./list.page.scss'],
 })
 export class ListPage implements OnInit {
+    @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
+
     data: any;
     url = environment.urldocument;
     key_search:string = "";
     loading;
     url_search = environment.url_search;
     title = '';
+    params : any;
+    page = 1;
+    totalPage : any;
     constructor(
         private route: ActivatedRoute,
         private router: Router,
@@ -35,6 +41,11 @@ export class ListPage implements OnInit {
                 this.title = params.title;
 
             }
+        });
+
+        this.route.paramMap.subscribe( params => {
+            this.params = params.get('id');
+            console.log('params list ID ',this.params);
         });
     }
 
@@ -99,4 +110,15 @@ export class ListPage implements OnInit {
         this.navCtrl.back();
 
     }
+    loadData(event) {
+        setTimeout(() => {
+            event.target.complete();
+            this.page = this.page + 1;
+            var finalUrl = environment.urllist + this.params +'&Page='+this.page+'&RowPage=10&P_Search=';
+            this.http.get(finalUrl).subscribe((response) => {
+               this.data = this.data.concat(response);
+            });
+        }, 500);
+    }
+
 }

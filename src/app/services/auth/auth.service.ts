@@ -88,7 +88,8 @@ export class AuthService {
                     if(this.redirectUrl){
                         this.router.navigateByUrl(this.redirectUrl);
                     }else{
-                        this.router.navigate(['main']);
+
+                        this.router.navigate(['/main'],{ queryParams: {},replaceUrl: true });
                     }
                 }),
                 catchError(e => {
