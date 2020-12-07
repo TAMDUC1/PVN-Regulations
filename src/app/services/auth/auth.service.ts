@@ -71,6 +71,10 @@ export class AuthService {
             .pipe(
                 tap(res => {
                     console.log('res',res);
+                   /* if(res){
+                        this.storage.set(TOKEN_KEY, res["token_type"] +' '+ res["access_token"]);
+
+                    }*/
                     this.storage.set(TOKEN_KEY, res);
                     this.storage.get(TOKEN_KEY).then((val) => {
                         console.log('TOKEN_KEY from storage', val);

@@ -22,6 +22,12 @@ export class LoginPage implements OnInit {
         this.credentialsForm = this.formBuilder.group({
             Username: ['', [Validators.required, Validators.email]],
             PasswordMobile: ['', [Validators.required, Validators.minLength(6)]]
+          //  grant_type: 'password'
+           /* username: ['', [Validators.required, Validators.email]],
+            password: ['', [Validators.required, Validators.minLength(6)]],
+            grant_type: 'password'
+            */
+
         });
     }
     onSubmit() {
