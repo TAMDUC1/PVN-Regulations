@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {environment} from '../../../environments/environment';
 const headerDict = {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/x-www-form-urlencoded'
 };
 
 const httpOptions = {
@@ -21,7 +21,7 @@ const TOKEN_KEY = 'access_token';
 })
 export class AuthService {
     redirectUrl: string;
-    authurl = environment.authUrl;
+   // authurl = environment.authUrl;
     url = '';
     user = null;
     authData = null;
@@ -61,44 +61,28 @@ export class AuthService {
     register(credentials) {
         return this.http.post(`${this.url}/api/register`, credentials).pipe(
             catchError(e => {
-              //  this.showAlert(e.error.msg);
                 throw new Error(e);
             })
         );
     }
     login(credentials) {
-        return this.http.post('http://222.255.252.41/api/Auth/Login', credentials,{ responseType: 'text' })
+      let creden = 'username=' + credentials.username +'&password=' + credentials.password +'&grant_type=password';
+        return this.http.post(environment.authUrlPVN,encodeURI(creden),httpOptions)
             .pipe(
                 tap(res => {
-                    console.log('res',res);
-                   /* if(res){
-                        this.storage.set(TOKEN_KEY, res["token_type"] +' '+ res["access_token"]);
-
-                    }*/
-                    this.storage.set(TOKEN_KEY, res);
+                    this.storage.set(TOKEN_KEY,res["access_token"]);
+                    //   this.storage.set(TOKEN_KEY, res["token_type"] +' '+ res["access_token"]);
                     this.storage.get(TOKEN_KEY).then((val) => {
-                        console.log('TOKEN_KEY from storage', val);
                     });
-                    this.authData = this.helper.decodeToken(res);
-                    const temp =  JSON.parse(this.authData.sub);
-                    const obj = {
-                        email : this.authData.email,
-                        roles : temp.roles
-                    };
-                    // save authData to service
-                    console.log('decode',obj);
                     this.authenticationState.next(true);
                     this.redirectUrl = this.activatedRoute.snapshot.queryParamMap.get('redirectUrl');
                     if(this.redirectUrl){
                         this.router.navigateByUrl(this.redirectUrl);
                     }else{
-
                         this.router.navigate(['/main'],{ queryParams: {},replaceUrl: true });
                     }
                 }),
                 catchError(e => {
-                    console.log(e);
-
                     this.showAlert(e.statusText);
                     throw new Error(e);
                 })

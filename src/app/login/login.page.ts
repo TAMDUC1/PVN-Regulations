@@ -20,27 +20,20 @@ export class LoginPage implements OnInit {
 
     ngOnInit() {
         this.credentialsForm = this.formBuilder.group({
-            Username: ['', [Validators.required, Validators.email]],
-            PasswordMobile: ['', [Validators.required, Validators.minLength(6)]]
-          //  grant_type: 'password'
-           /* username: ['', [Validators.required, Validators.email]],
+            username: ['', [Validators.required]],
             password: ['', [Validators.required, Validators.minLength(6)]],
-            grant_type: 'password'
-            */
+            grant_type: ['password']
 
         });
     }
     onSubmit() {
-        console.log('this.credentialsForm.value',this.credentialsForm.value);
         this.authService.login(this.credentialsForm.value).subscribe();
     }
     toggleSideMenu() {
-        console.log("call toggleSideMenu ");
         this.menuCtrl.toggle(); //Add this method to your button click function
     }
     register() {
         this.authService.register(this.credentialsForm.value).subscribe(res => {
-            // Call Login to automatically login the new user
             this.authService.login(this.credentialsForm.value).subscribe();
         });
     }

@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { Router, RouterEvent, NavigationExtras, ActivatedRoute } from '@angular/router';
+import { Router, RouterEvent, ActivatedRoute } from '@angular/router';
 // @ts-ignore
 import { SidemenuService } from './services/api/sidemenu.service';
 import { CategoryDataService} from './services/data/category-data.service';
 import { ListDataService} from './services/data/list-data.service';
 import { DocumentDataService} from './services/data/document-data.service';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { AuthService} from './services/auth/auth.service';
 // @ts-ignore
 import { environment } from '../environments/environment';
@@ -131,7 +131,7 @@ export class AppComponent implements OnInit {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }*/
     this.sideMenuService.getSideMenu();
-    this.http.get('http://222.255.250.162:8080/api/menu/Get_Menu_Mobile').subscribe((response) => {
+    this.http.get('http://quychenoibo.pvn.vn/api/menu/Get_Menu_Mobile').subscribe((response) => {
       console.log('response', response);
       this.sideMenu = response;
       console.log('side', this.sideMenu);

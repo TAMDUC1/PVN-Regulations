@@ -25,7 +25,7 @@ export class SidemenuService {
   private currentMenu = '';
   constructor(private http: HttpClient) { }
   getSideMenu = function () {
-      this.http.get('http://222.255.250.162:8080/api/menu/Get_Menu_Mobile').subscribe((response) => {
+      this.http.get('http://quychenoibo.pvn.vn/api/menu/Get_Menu_Mobile').subscribe((response) => {
           this.sideMenu = response;
           this.sideMenu.forEach(e =>{
               e.category = [];

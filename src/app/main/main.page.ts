@@ -13,7 +13,7 @@ import {CategoryDataService} from '../services/data/category-data.service';
   styleUrls: ['./main.page.scss'],
 })
 export class MainPage implements OnInit {
-  key_search:string = ""
+  key_search:string = "";
   loading
   url = environment.url_search;
   urldoc = environment.urldocument;
@@ -33,13 +33,13 @@ export class MainPage implements OnInit {
   }
 
   ngOnInit() {
-      this.http.get('http://222.255.250.162:8080/api/menu/Get_Menu_Mobile').subscribe((response) => {
+      this.http.get('http://quychenoibo.pvn.vn/api/menu/Get_Menu_Mobile').subscribe((response) => {
           console.log('response', response);
           this.sideMenu = response;
           console.log('side', this.sideMenu);
       });
-      // http://222.255.250.162:8080/api/TaiLieu/getTaiLieu?IdNhom=6161&Page=1&RowPage=10&P_Search=
-      this.http.get('http://222.255.250.162:8080/api/TaiLieu/getTaiLieu?IdNhom=6161&Page=1&RowPage=10&P_Search=').subscribe((response) => {
+      // http://quychenoibo.pvn.vn/api/TaiLieu/getTaiLieu?IdNhom=6161&Page=1&RowPage=10&P_Search=
+      this.http.get('http://quychenoibo.pvn.vn/api/TaiLieu/getTaiLieu?IdNhom=6161&Page=1&RowPage=10&P_Search=').subscribe((response) => {
           console.log('response', response);
           this.list = response;
           console.log('list ', this.list);
@@ -94,20 +94,16 @@ export class MainPage implements OnInit {
     toast.present();
   }
     openItemDetail(url, ObjectID) {
-
         var temp = url.toLowerCase();
         if (temp === 'detail') {
             temp = 'document';
         }
-
         // call api get category de truyen vao page temp
         if (temp === 'document') {
             this.http.get(environment.urldocumentmother).subscribe((response) => {
                 this.documentData.setData(ObjectID,response);
                 this.router.navigateByUrl('/' + 'document' + '/' + ObjectID);
             });
-
-
         } else {
             if (temp == 'list') {
                 let urlTemp = environment.urllist + ObjectID + '&Page=1&RowPage=10&P_Search=';
@@ -115,9 +111,7 @@ export class MainPage implements OnInit {
                 this.http.get(urlTemp).subscribe((response) => {
                     this.listData.setData(ObjectID,response,'');
                     this.router.navigateByUrl('/' + temp + '/' + ObjectID);
-
                 });
-
             } else {
                 let urlTemp = environment.url + ObjectID;
                 this.http.get(urlTemp).subscribe((response) => {
@@ -126,8 +120,6 @@ export class MainPage implements OnInit {
                 });
             }
         }
-
-
     }
 
 }
