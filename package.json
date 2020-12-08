@@ -40,6 +40,7 @@
     "cordova-plugin-file-opener2": "^3.0.5",
     "cordova-plugin-file-transfer": "^1.7.1",
     "cordova-sqlite-storage": "^5.1.0",
+    "jetifier": "^1.6.6",
     "ng2-pdf-viewer": "^6.3.2",
     "pdf-to-base64": "^1.0.3",
     "rxjs": "^6.5.5",
